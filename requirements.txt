@@ -1,0 +1,5 @@
+fastmcp
+firebase-admin
+requests
+beautifulsoup4
+uvicorn
