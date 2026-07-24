@@ -22,22 +22,28 @@ db = firestore.client()
 
 @mcp.tool()
 def save_test():
-    """
-    Firestore 저장 테스트
-    """
 
-    db.collection("community_posts").add({
-        "community": "test",
-        "board": "test",
-        "title": "Firestore 연결 테스트",
-        "content": "MCP 저장 성공",
-        "url": "https://test.com"
-    })
+    try:
 
-    return {
-        "status": "success",
-        "saved_to_firestore": True
-    }
+        doc_ref = db.collection("community_posts").add({
+            "community": "test",
+            "board": "test",
+            "title": "Firestore 연결 테스트",
+            "content": "MCP 저장 성공",
+            "url": "https://test.com"
+        })
+
+        return {
+            "status": "success",
+            "saved_to_firestore": True
+        }
+
+    except Exception as e:
+
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 @mcp.tool()
 def crawl_community(community: str):
