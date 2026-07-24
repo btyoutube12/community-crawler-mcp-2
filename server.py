@@ -1,13 +1,42 @@
 import os
 from fastmcp import FastMCP
+import json
+
+import firebase_admin
+
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 mcp = FastMCP("CommunityCrawler")
+firebase_credentials = json.loads(
+    os.environ["FIREBASE_CREDENTIALS"]
+)
+
+cred = credentials.Certificate(
+    firebase_credentials
+)
+
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 @mcp.tool()
-def hello():
+def save_test():
+    """
+    Firestore 저장 테스트
+    """
+
+    db.collection("community_posts").add({
+        "community": "test",
+        "board": "test",
+        "title": "Firestore 연결 테스트",
+        "content": "MCP 저장 성공",
+        "url": "https://test.com"
+    })
+
     return {
         "status": "success",
-        "message": "MCP 연결 성공"
+        "saved_to_firestore": True
     }
 
 @mcp.tool()
