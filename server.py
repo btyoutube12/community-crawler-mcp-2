@@ -109,6 +109,17 @@ SUPPORTED_COMMUNITIES = {
 @mcp.tool()
 def crawl_community(community: str):
 
+    aliases = {
+        "dcinside": "디시인사이드",
+        "dc": "디시인사이드",
+        "디씨": "디시인사이드"
+    }
+
+    community = aliases.get(
+        community.lower(),
+        community
+    )
+
     if community not in SUPPORTED_COMMUNITIES:
 
         return {
