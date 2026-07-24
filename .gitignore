@@ -223,3 +223,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 >>>>>>> d683a06394bb7c57b5516b4698843e5431635e43
+__pycache__/
+*.pyc
+firebase_key.json
+.env
