@@ -82,7 +82,7 @@ def save_test():
 # 크롤러 자리
 # ==========================================
 
-def crawl_dcinside():
+@mcp.tool()
 def crawl_dcinside():
 
     try:
