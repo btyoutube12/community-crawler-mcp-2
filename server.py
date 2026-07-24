@@ -83,14 +83,42 @@ def save_test():
 # ==========================================
 
 def crawl_dcinside():
+def crawl_dcinside():
 
-    return {
-        "community": "디시인사이드",
-        "posts_collected": 0,
-        "comments_collected": 0,
-        "saved_to_firestore": False,
-        "status": "ready"
-    }
+    try:
+
+        sample_posts = []
+
+        for i in range(1, 6):
+
+            sample_posts.append({
+                "community": "디시인사이드",
+                "board": "dcbest",
+                "title": f"샘플 게시글 {i}",
+                "content": f"테스트 데이터 {i}",
+                "url": f"https://example.com/{i}",
+                "created_at": None
+            })
+
+        for post in sample_posts:
+            save_post(post)
+
+        return {
+            "community": "디시인사이드",
+            "posts_collected": len(sample_posts),
+            "comments_collected": 0,
+            "saved_to_firestore": True,
+            "status": "success"
+        }
+
+    except Exception as e:
+
+        return {
+            "community": "디시인사이드",
+            "saved_to_firestore": False,
+            "status": "error",
+            "message": str(e)
+        }
 
 
 # ==========================================
